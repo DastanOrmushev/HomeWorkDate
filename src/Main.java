@@ -1,17 +1,28 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String start_date = "09/24/2021";
+        String end_date = "10/17/2021";
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        Date dateStart = null;
+        Date dateEnd = null;
+        try {
+            dateStart = format.parse(start_date);
+            dateEnd = format.parse(end_date);
+
+            System.out.println(format.format(dateStart));
+            System.out.println(format.format(dateEnd));
+
+        } catch (ParseException exception) {
+            exception.printStackTrace();
         }
+        long raznica = dateEnd.getTime() - dateStart.getTime();
+        int days = (int) (raznica/(1000 * 60 * 60 *24));
+        System.out.println(days);
     }
 }
