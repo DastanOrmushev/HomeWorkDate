@@ -18,16 +18,16 @@ public class Main {
         String start_date = "09/24/2021";
         String end_date = "10/17/2021";
 
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
 
         Date dateStart = null;
         Date dateEnd = null;
         try {
-            dateStart = format.parse(start_date);
-            dateEnd = format.parse(end_date);
+            dateStart = format1.parse(start_date);
+            dateEnd = format1.parse(end_date);
 
-            System.out.println(format.format(dateStart));
-            System.out.println(format.format(dateEnd));
+            System.out.println(format1.format(dateStart));
+            System.out.println(format1.format(dateEnd));
 
         } catch (ParseException exception) {
             exception.printStackTrace();
@@ -38,23 +38,53 @@ public class Main {
 
          /*
         Задача 2.
-        Задана определенная дата экзамена: например, 18.04.2022.
+        Задана определенная дата экзамена: например, 18.10.2023.
         С консоли вводится дата в виде String в таком же формате(dd.MM.yyyy)(System.IN).
         Требуется сравнить дату экзамена и введенную дату.
         Если дни равны, вывести ответ: "Экзамен сегодня";
         Если введенная дата раньше, вывести: "До экзамена осталось " + кол-во  оставшихся дней.
         Если дата позже, то вывести: "Экзамен был " + кол-во прошедших дней  + " назад."
         */
-        //Date dateExam = new Date(18.04.2022);
-        LocalDate examDate = LocalDate.of(2022,05,20);
+
+       // Date dateExam = new Date();
+        //dateExam.getTime(18.04.2023);
+       // LocalDate examDate = LocalDate.of(2022,05,20);
+
+        String examDate = "18.10.2023";
 
 
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите дату: ");
         String userDate = scanner.next();
+        System.out.println("User date: "+userDate);
 
+        SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy");
 
+        Date userDateFormat = null;
+        Date examDateFormat = null;
 
+        try {
+            examDateFormat = format2.parse(examDate);
+            userDateFormat = format2.parse(userDate);
+
+            System.out.println(format2.format(examDateFormat));
+            System.out.println(format2.format(userDateFormat));
+
+        } catch (ParseException exception1) {
+            exception1.printStackTrace();
+        }
+        long difDays = userDateFormat.getTime() - examDateFormat.getTime();
+        int res = (int) (difDays/(1000 * 60 * 60 *24));
+
+        System.out.println(res);
+        if (res == 0){
+            System.out.println("Экзамен сегодня");
+        }else if(res > 0){
+            System.out.println("До экзамена осталось " + res + " д.");
+        }else if (res < 0) {
+
+            System.out.println("Экзамен был " + Math.abs(res) + " д. назад.");
+        }
     }
 }
