@@ -57,7 +57,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите дату: ");
         String userDate = scanner.next();
-        System.out.println("User date: "+userDate);
+        System.out.println("User date: " + userDate);
 
         SimpleDateFormat format2 = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -65,16 +65,26 @@ public class Main {
         Date examDateFormat = null;
 
         try {
+
             examDateFormat = format2.parse(examDate);
             userDateFormat = format2.parse(userDate);
 
             System.out.println(format2.format(examDateFormat));
             System.out.println(format2.format(userDateFormat));
+//     //       throw new RuntimeException("Введите в формате dd.mm.yyy ");
+//        }catch (RuntimeException exp),ParseException exception1); {
+//        exception1.printStackTrace();
+//           System.err.println(exception1.getMessage());
+//            Throwable exp = null;
+//            System.out.println(exp.getMessage());
+//
+//        }
 
         } catch (ParseException exception1) {
             exception1.printStackTrace();
-        }
-        long difDays = userDateFormat.getTime() - examDateFormat.getTime();
+            System.err.println(exception1.getMessage());
+       }
+        long difDays = examDateFormat.getTime() - userDateFormat.getTime();
         int res = (int) (difDays/(1000 * 60 * 60 *24));
 
         System.out.println(res);
